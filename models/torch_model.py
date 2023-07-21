@@ -20,3 +20,40 @@ class Net(nn.Module):
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
         return x
+
+    def _fit(self):
+        loss_fn = nn.L1Loss()
+        optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+
+        data_x = torch.tensor(data_x, dtype=torch.float32)
+        data_x = torch.transpose(data_x, 1, 3)
+        print(data_x.shape)
+        data_y = torch.tensor(data_y, dtype=torch.float32)
+        print(data_y.shape)
+
+        for epoch in range(10):
+            loss_ar = 0
+            for i in range(count_image):
+                optimizer.zero_grad()
+
+                pred = net(data_x[i])
+
+                loss = loss_fn(pred, data_y[i])
+                loss.backward()
+                loss_ar += loss
+                optimizer.step()
+
+            print(loss_ar / count_image)
+
+        image = io.imread('Logos/nike-golf-vector-logo-400x400.png')
+
+        arr = np.array(image)
+        print(arr.shape)
+        test = torch.tensor(arr, dtype=torch.float32)
+        print(test.shape)
+        test = torch.transpose(test, 0, 2)
+        print(test.shape)
+        print('-' * 100)
+        net.eval()
+        print(net(test))
+        print(data_y)
