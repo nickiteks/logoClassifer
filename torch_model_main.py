@@ -8,24 +8,12 @@ import torch.optim as optim
 import torch.nn as nn
 import torch.nn.functional as F
 
-
-count_image = 100
-
-image = io.imread('Logos/bat-logo-preview-400x400.png')
-
-# plotting the original image
-i, (im1, im2, im3, im4) = plt.subplots(1, 4, sharey=True)
-i.set_figwidth(20)
-
-im1.imshow(image)  # Original image
-im2.imshow(image[:, :, 0])  # Red
-im3.imshow(image[:, :, 1])  # Green
-im4.imshow(image[:, :, 2])  # Blue
-i.suptitle('Original & RGB image channels')
+count_image = 101
+image_dir = 'Dataset_1'
 
 oldpwd = os.getcwd()
 
-os.chdir('Logos')
+os.chdir(image_dir)
 
 files = os.listdir()
 
@@ -33,15 +21,12 @@ data_x = []
 
 for index in range(count_image):
     image = io.imread(files[index])
-
     arr = np.array(image)
-
     data_x.append(arr.tolist())
-    # data_x.append(np.reshape(arr, (1, 400 * 400 * 4))[0].tolist())
 
 os.chdir(oldpwd)
 
-numpy.random.seed(42)
+# numpy.random.seed(42)
 data_y = numpy.random.random(count_image)
 print(len(data_x))
 print(len(data_y))
@@ -68,7 +53,6 @@ class Net(nn.Module):
 
 
 net = Net()
-
 loss_fn = nn.L1Loss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
