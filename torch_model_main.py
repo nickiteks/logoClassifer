@@ -1,16 +1,12 @@
 import numpy as np
 import numpy.random
-from PIL import Image
-from numpy import asarray
 import os
 from skimage import io
-import skimage
 import matplotlib.pyplot as plt
-from catboost import CatBoostClassifier
 import torch
+import torch.optim as optim
 import torch.nn as nn
 import torch.nn.functional as F
-import torch.optim as optim
 
 
 count_image = 100
@@ -49,9 +45,6 @@ numpy.random.seed(42)
 data_y = numpy.random.random(count_image)
 print(len(data_x))
 print(len(data_y))
-
-import torch.nn as nn
-import torch.nn.functional as F
 
 
 class Net(nn.Module):
