@@ -46,7 +46,7 @@ print(data_y)
 
 X_train, X_test, y_train, y_test = train_test_split(data_x, data_y, test_size=0.25)
 
-bst = XGBClassifier(n_estimators=100, max_depth=2, learning_rate=1, objective='multi:softprob')
+bst = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
 bst.fit(X_train, y_train)
 
 y_pred = bst.predict(X_test)
