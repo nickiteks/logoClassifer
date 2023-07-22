@@ -1,0 +1,42 @@
+body {
+    background-image: linear-gradient(to bottom right, #020613, #0a0c13, #191b21);
+}
+
+.navbar {
+    background: -webkit-radial-gradient(#0B4BCB, #09204c);
+}
+
+.content {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    margin-left: 5%;
+    width: 90%;
+    height: 70%;
+    padding: 10px;
+    text-align: center;
+    /* background-color: #aa2c73; */
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 46px;
+    padding-bottom: 30px;
+    background: -webkit-linear-gradient(#233b8a, #406de8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card {
+    width: 70%;
+    margin: auto;
+}
+
+.navbar-brand {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 26px;
+}
+
+h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: aliceblue;
+}

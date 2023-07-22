@@ -1,0 +1,22 @@
+{% extends 'partials/base.html' %}
+{% block title %}Home{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="content">
+    <div class="header1">
+        <h1>LOGO RATING</h1>
+    </div>
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class='btn btn-primary' type='submit'value='Rate'>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
