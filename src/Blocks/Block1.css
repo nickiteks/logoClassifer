@@ -1,0 +1,47 @@
+.block1 {
+    width: 100%;
+    height: 1064px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #a296fe, #ffffff);
+    font-family: 'Montserrat', sans-serif;
+    font-style:normal;
+    letter-spacing: 0.03em;
+    gap:16px;
+}
+
+/* .block1-icon {
+
+} */
+
+.block1-title {
+    font-size: 96px;
+    margin-top: 96px;
+}
+
+.block1-text {
+    font-size: 32px;
+    margin-top: 32px;
+}
+
+.block1-fileblock {
+    width: 893px;
+    height: 338px;
+    background: linear-gradient(to bottom, #c8c1f8, #ece9fe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px dashed black;
+}
+
+.block1-button__style {
+    margin-top: 32px;
+}
+
+.block1-text2 {
+    color: #7e93ad;
+}
