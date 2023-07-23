@@ -5,7 +5,9 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-md-8 offset-md-2">
-                <h3>{{Predict}}</h3>
+            {% for predict in Predict %}
+                <h3>{{predict}}</h3>
+            {% endfor %}
         </div>
     </div>
 </div>
