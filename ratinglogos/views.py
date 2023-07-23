@@ -16,9 +16,10 @@ def home(request):
 def results(request):
     y_pred = 0
     if request.method == 'POST':
-        form = DataForm(request.POST,request.FILES)
+        form = DataForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+
             class Net(nn.Module):
                 def __init__(self):
                     super().__init__()
@@ -60,5 +61,5 @@ def results(request):
             #
             # y_pred = bst.predict(data_x)
 
-    context = {"Predict":y_pred}
+    context = {"Predict": y_pred}
     return render(request, 'RatingLogos/results.html', context)
