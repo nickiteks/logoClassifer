@@ -1,0 +1,14 @@
+{% extends 'partials/base.html' %}
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-8 offset-md-2">
+                <p> {{rated_logo.file}} </p>
+                <img src="{{ rated_logo.file }}" height="300px", width="600px"/>
+                <h3> Rating: {{ rated_logo.rating }}</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}
