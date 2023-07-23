@@ -21,8 +21,8 @@ dataframe_new = pd.DataFrame(columns=dataframe.columns)
 for name_img in market_labels:
     data = [name_img]
     for column in ['style', 'noice', 'place']:
-        data.append(dataframe[dataframe['label'] == name_img][column].mean())
+        data.append(int(dataframe[dataframe['label'] == name_img][column].mean()))
     dataframe_new.loc[len(dataframe_new)] = data
 
 print(dataframe_new)
-
+dataframe_new.to_csv('data/preprocess_data.csv', index=False)
