@@ -1,9 +1,11 @@
+import numpy as np
 from django.shortcuts import render
 from .forms import DataForm
 from skimage import io
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from xgboost import XGBClassifier
 
 
 # Create your views here.
@@ -15,11 +17,13 @@ def home(request):
 
 def results(request):
     y_pred = 0
+    xgboost_pred = []
     if request.method == 'POST':
         form = DataForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
 
+            # pytorch
             class Net(nn.Module):
                 def __init__(self):
                     super().__init__()
@@ -50,16 +54,24 @@ def results(request):
 
             y_pred = [int(i) for i in net(X).detach().numpy()]
 
-            # image = io.imread(f'media/media/{form.cleaned_data["file"]}')
-            #
-            # arr = np.array(image)
-            #
-            # bst = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
-            # bst.load_model("ML_model/xgBoostModel.json")
-            #
-            # data_x = [np.reshape(arr, (1, 400 * 400 * 3))[0]]
-            #
-            # y_pred = bst.predict(data_x)
+            #xgboost
 
-    context = {"Predict": y_pred}
+            image = io.imread(f'media/media/{form.cleaned_data["file"]}')
+
+            arr = np.array(image)
+
+            bstStyle = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
+            bstStyle.load_model("ML_model/xgBoostModelStyle.json")
+
+            bstPlace = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
+            bstPlace.load_model("ML_model/xgBoostModelPlace.json")
+
+            bstNoise = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
+            bstNoise.load_model("ML_model/xgBoostModelNoise.json")
+
+            data_x = [np.reshape(arr, (1, 400 * 400 * 3))[0]]
+
+            xgboost_pred = [bstStyle.predict(data_x),bstNoise.predict(data_x),bstPlace.predict(data_x)]
+
+    context = {"PredictPytorch": y_pred, 'PredictXGBoost':xgboost_pred}
     return render(request, 'RatingLogos/results.html', context)
