@@ -16,20 +16,21 @@ def home(request):
 def results(request):
     y_pred = 0
     if request.method == 'POST':
-        form = DataForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-
-            image = io.imread(f'media/media/{form.cleaned_data["file"]}')
-
-            arr = np.array(image)
-
-            bst = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
-            bst.load_model("ML_model/xgBoostModel.json")
-
-            data_x = [np.reshape(arr, (1, 400 * 400 * 3))[0]]
-
-            y_pred = bst.predict(data_x)
+        print('yes!!')
+        # form = DataForm(request.POST,request.FILES)
+        # if form.is_valid():
+        #     form.save()
+        #
+        #     image = io.imread(f'media/media/{form.cleaned_data["file"]}')
+        #
+        #     arr = np.array(image)
+        #
+        #     bst = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
+        #     bst.load_model("ML_model/xgBoostModel.json")
+        #
+        #     data_x = [np.reshape(arr, (1, 400 * 400 * 3))[0]]
+        #
+        #     y_pred = bst.predict(data_x)
 
     context = {"Predict":y_pred}
     return render(request, 'RatingLogos/results.html', context)
