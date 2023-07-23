@@ -3,6 +3,7 @@ from .forms import DataForm
 from .models import Data
 import numpy as np
 from skimage import io
+from xgboost import XGBClassifier
 
 
 # Create your views here.
@@ -13,6 +14,7 @@ def home(request):
 
 
 def results(request):
+    y_pred = 0
     if request.method == 'POST':
         form = DataForm(request.POST,request.FILES)
         if form.is_valid():
@@ -22,7 +24,12 @@ def results(request):
 
             arr = np.array(image)
 
+            bst = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
+            bst.load_model("ML_model/xgBoostModel.json")
 
+            data_x = [np.reshape(arr, (1, 400 * 400 * 3))[0]]
 
-    context = {}
+            y_pred = bst.predict(data_x)
+
+    context = {"Predict":y_pred}
     return render(request, 'RatingLogos/results.html', context)
