@@ -73,4 +73,4 @@ print(preds.shape)
 
 print(F.l1_loss(torch.tensor(preds),y_test))
 
-torch.save(net, 'model/model.pytorch')
+torch.save(net.state_dict(), 'model/model.pytorch')

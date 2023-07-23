@@ -1,11 +1,15 @@
 import torch
 from skimage import io
+from model.model import Net
 
-net = torch.load('model/model.pytorch')
+net = Net()
+net.load_state_dict(torch.load('model/model.pytorch'))
 net.eval()
 
 arr = io.imread('Dataset_1/18.jpg')
+X = torch.tensor(arr, dtype=torch.float32)
+X = torch.transpose(X,0,2)
 
-print(int(net(torch.transpose(torch.tensor(arr, dtype=torch.float32),0,2))*10))
+print(net(X))
 
 
