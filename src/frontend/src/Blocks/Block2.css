@@ -1,0 +1,44 @@
+.block2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    font-style:normal;
+    letter-spacing: 0.03em;
+    height: 2000px;
+    gap:16px;
+}
+
+
+.block2-title {
+    font-size: 44px;
+}
+
+.block2-text {
+    font-size: 22px;
+    margin-top: 16px;
+}
+
+.block2-wrapper {
+   width: 100%;
+   display: flex; 
+   align-items: center;
+   justify-content: space-between;
+   flex-direction: row;
+   padding: 32px;
+   height: 414px;
+   gap: 16px;
+}
+
+.block2-list__wrapper {
+    display: flex; 
+    align-items: baseline;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.block2-button__style {
+    margin-top: 16px;
+}

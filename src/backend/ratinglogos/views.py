@@ -45,7 +45,7 @@ def results(request):
 
             net = Simple()
 
-            net.load_state_dict(torch.load("/Users/nikita/PycharmProjects/logoClassifer/ML_Model/model2.pytorch"))
+            net.load_state_dict(torch.load("ML_Model/model2.pytorch"))
             net.eval()
 
             arr = io.imread(f'media/media/{form.cleaned_data["file"]}')
