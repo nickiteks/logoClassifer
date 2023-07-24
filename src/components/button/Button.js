@@ -14,7 +14,7 @@ export const ButtonType = {
 
 export const Button = (props) => {
 
-    const { size, type, text, round} = props;
+    const { size, type, text, round, onClick} = props;
 
     const buttonClasses = classnames (
         'button',
@@ -25,7 +25,7 @@ export const Button = (props) => {
     )
 
     return(
-        <div className={buttonClasses}>
+        <div className={buttonClasses} onClick={onClick}>
             {text && <span>{text}</span>}
         </div>
     )

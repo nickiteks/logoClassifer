@@ -1,6 +1,5 @@
 .block2 {
     width: 100%;
-    height: 1064px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,6 +7,7 @@
     font-family: 'Montserrat', sans-serif;
     font-style:normal;
     letter-spacing: 0.03em;
+    height: 2000px;
     gap:16px;
 }
 
@@ -29,6 +29,7 @@
    flex-direction: row;
    padding: 32px;
    height: 414px;
+   gap: 16px;
 }
 
 .block2-list__wrapper {
@@ -36,7 +37,6 @@
     align-items: baseline;
     justify-content: center;
     flex-direction: column;
-    width: 363px;
 }
 
 .block2-button__style {
