@@ -13,10 +13,17 @@ class Net(nn.Module):
         self.fc3 = nn.Linear(84, 3)
 
     def forward(self, x):
+        print(x.shape)
         x = self.pool(F.relu(self.conv1(x)))
+        print(x.shape)
         x = self.pool(F.relu(self.conv2(x)))
-        x = torch.flatten(x, 0)  # flatten all dimensions except batch
+        print(x.shape)
+        x = torch.flatten(x, 1)  # flatten all dimensions except batch
+        print(x.shape)
         x = F.relu(self.fc1(x))
+        print(x.shape)
         x = F.relu(self.fc2(x))
+        print(x.shape)
         x = self.fc3(x)
+        print(x.shape)
         return x

@@ -41,15 +41,16 @@ loss_fn = nn.L1Loss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 loss_list = []
-
-for epoch in range(10):
+step = 10
+print(X_train.shape)
+for epoch in range(1):
     loss_ar = 0
-    for i in range(len(X_train)):
+    for i in range(0,len(X_train),step):
         optimizer.zero_grad()
 
-        pred = net(X_train[i])
+        pred = net(X_train[i:i+step])
 
-        loss = loss_fn(pred, y_train[i])
+        loss = loss_fn(pred, y_train[i:i+step])
         loss.backward()
         loss_ar += loss
         optimizer.step()
@@ -64,7 +65,7 @@ plt.plot(loss_list)
 plt.savefig('Image/loss_train.jpg')
 
 for i in range(len(X_test)):
-    preds.append(net(X_test[i]).detach().numpy())
+    preds.append(net(X_test[i].unsqeeze(0)).detach().numpy())
 print('0'*100)
 print(y_test.shape)
 
@@ -74,3 +75,4 @@ print(preds.shape)
 print(F.l1_loss(torch.tensor(preds),y_test))
 
 torch.save(net.state_dict(), 'model/model.pytorch')
+
