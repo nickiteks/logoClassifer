@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from xgboost import XGBClassifier
-
+from ML_Model.model2 import Simple
 
 # Create your views here.
 def home(request):
@@ -43,16 +43,17 @@ def results(request):
                     x = self.fc3(x)
                     return x
 
-            net = Net()
+            net = Simple()
 
-            net.load_state_dict(torch.load("/Users/nikita/PycharmProjects/logoClassifer/ML_Model/model.pytorch"))
+            net.load_state_dict(torch.load("/Users/nikita/PycharmProjects/logoClassifer/ML_Model/model2.pytorch"))
             net.eval()
 
             arr = io.imread(f'media/media/{form.cleaned_data["file"]}')
             X = torch.tensor(arr, dtype=torch.float32)
             X = torch.transpose(X, 0, 2)
-
-            y_pred = [int(i) for i in net(X).detach().numpy()]
+            X = X.unsqueeze(0)
+            X = net(X).detach().numpy()
+            y_pred = [int(i*10) for i in X[0]]
 
             #xgboost
 
