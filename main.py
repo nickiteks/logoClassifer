@@ -1,5 +1,6 @@
 import numpy as np
 import numpy.random
+import pandas as pd
 from PIL import Image
 from numpy import asarray
 import os
@@ -21,30 +22,71 @@ from xgboost import XGBClassifier
 # im3.imshow(image[:, :, 1])  # Green
 # im4.imshow(image[:, :, 2])  # Blue
 # i.suptitle('Original & RGB image channels')
+#
+# oldpwd = os.getcwd()
+#
+# os.chdir('Dataset_1')
+#
+# files = os.listdir()
+#
+# data_x = []
+#
+# #формирование x
+# for index in range(100):
+#     image = io.imread(files[index])
+#
+#     arr = np.array(image)
+#     data_x.append(np.reshape(arr, (1, 400 * 400 * 3))[0])
+#
+# os.chdir(oldpwd)
+#
+# # формирование y
+# data_y = numpy.random.randint(0, 10, 100)
+# data_y = data_y.astype(int)
+# print(data_y)
+#
+# X_train, X_test, y_train, y_test = train_test_split(data_x, data_y, test_size=0.25)
+#
+# bst = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
+# bst.fit(X_train, y_train)
+#
+# y_pred = bst.predict(X_test)
+# predictions = [round(value) for value in y_pred]
+#
+# accuracy = accuracy_score(y_test, predictions)
+# print("Accuracy: %.2f%%" % (accuracy * 100.0))
+#
+# bst.save_model('xgBoostModel.json')
 
-oldpwd = os.getcwd()
 
-os.chdir('Dataset_1')
+dataset = pd.read_csv('data/preprocess_data.csv')
+images = []
+x = []
 
-files = os.listdir()
-
-data_x = []
-
-#формирование x
-for index in range(100):
-    image = io.imread(files[index])
+# #формирование x
+for label in dataset['label']:
+    image = io.imread(f'Dataset_1/{label}')
 
     arr = np.array(image)
-    data_x.append(np.reshape(arr, (1, 400 * 400 * 3))[0])
+    x.append(np.reshape(arr, (1, 400 * 400 * 3))[0])
 
-os.chdir(oldpwd)
+y = dataset[dataset.columns[1:]].values
 
-# формирование y
-data_y = numpy.random.randint(0, 10, 100)
-data_y = data_y.astype(int)
-print(data_y)
+print(x)
+print(y)
 
-X_train, X_test, y_train, y_test = train_test_split(data_x, data_y, test_size=0.25)
+print(len(x))
+print(len(y))
+
+for i in range(len(y)):
+    for j in range(len(y[i])):
+        y[i][j] = y[i][j]-1
+
+y = [y[i][0] for i in range(len(y))]
+
+print(y)
+
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.25)
 
 bst = XGBClassifier(n_estimators=50, max_depth=10, learning_rate=0.01, objective='multi:softprob')
 bst.fit(X_train, y_train)
