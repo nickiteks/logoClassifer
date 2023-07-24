@@ -38,7 +38,7 @@ X_train, X_test, y_train, y_test = train_test_split(data_x, data_y, test_size=0.
 
 net = Net()
 loss_fn = nn.L1Loss()
-optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+optimizer = optim.SGD(net.parameters(), lr=0.01, momentum=0.9)
 
 loss_list = []
 step = 10
