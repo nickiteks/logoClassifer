@@ -1,7 +1,7 @@
 import './Header.css'
 import { useState } from 'react'
 import RegistrationModal from '../components/RegistationModal'
-import Icon from '../images/header/IconHeader.svg'
+import Icon from '../images/header/Horn logo.svg'
 import { Button, ButtonSize, ButtonType } from '../components/button/Button'
 
 export const Header = () => {
@@ -19,7 +19,7 @@ export const Header = () => {
     return(
         <div className="header">
             <img src={Icon}></img>
-            <div className="header-title">Taganrogky</div>
+            {/* <div className="header-title">Taganrogky</div> */}
             <div className="header-text">Начать</div>
             <div className="header-text">Как это работает</div>
             <div className="header-text">Сотрудничество</div>

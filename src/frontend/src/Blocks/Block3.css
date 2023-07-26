@@ -49,5 +49,15 @@
 .block3-icon__wrapper {
     height: 400px;
     width: 100%;
-    background: linear-gradient(to bottom, #ffffff, #c8c1f8);
+    background: linear-gradient(to bottom, #ffffff, #C2CDFF);
+}
+
+.block3-title {
+    color: #1B314B;
+    font-weight: bold;
+}
+
+.block3-text1,
+.block3-text2 {
+    color: #1B314B;
 }

@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: linear-gradient(to bottom, #a296fe, #ffffff);
+    background: linear-gradient(to bottom, #ffffff , #C2CDFF);
     font-family: 'Montserrat', sans-serif;
     font-style:normal;
     letter-spacing: 0.03em;
@@ -19,23 +19,29 @@
 .block1-title {
     font-size: 96px;
     margin-top: 96px;
+    color: #1B314B;
+}
+
+.block1-text1 {
+    color: #1B314B;
 }
 
 .block1-text {
     font-size: 32px;
     margin-top: 32px;
+    color: #1B314B;
 }
 
 .block1-fileblock {
     width: 893px;
-    height: 338px;
-    background: linear-gradient(to bottom, #c8c1f8, #ece9fe);
+    height: 400px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     border-radius: 10px;
-    border: 1px dashed black;
+    border: 1px dashed #1B314B;
 }
 
 .block1-button__style {
